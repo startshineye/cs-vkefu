@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vkefu.webim.web.dao.ChatSessionDAO">
+  <resultMap id="BaseResultMap" type="com.vkefu.webim.web.beans.ChatSession">
+    <id column="session_id" jdbcType="VARCHAR" property="sessionId" />
+    <result column="tenant_id" jdbcType="VARCHAR" property="tenantId" />
+    <result column="agentuser_id" jdbcType="VARCHAR" property="agentuserId" />
+    <result column="source" jdbcType="VARCHAR" property="source" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="agent_id" jdbcType="VARCHAR" property="agentId" />
+    <result column="agent_name" jdbcType="VARCHAR" property="agentName" />
+    <result column="start_time" jdbcType="VARCHAR" property="startTime" />
+    <result column="response_time" jdbcType="VARCHAR" property="responseTime" />
+    <result column="end_time" jdbcType="VARCHAR" property="endTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="start_cause" jdbcType="INTEGER" property="startCause" />
+    <result column="end_cause" jdbcType="INTEGER" property="endCause" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    session_id, tenant_id, agentuser_id, source, user_id, user_name, agent_id, agent_name, 
+    start_time, response_time, end_time, status, start_cause, end_cause
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cs_chat_session
+    where session_id = #{sessionId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from cs_chat_session
+    where session_id = #{sessionId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.vkefu.webim.web.beans.ChatSession">
+    insert into cs_chat_session (session_id, tenant_id, agentuser_id, 
+      source, user_id, user_name, 
+      agent_id, agent_name, start_time, 
+      response_time, end_time, status, 
+      start_cause, end_cause)
+    values (#{sessionId,jdbcType=VARCHAR}, #{tenantId,jdbcType=VARCHAR}, #{agentuserId,jdbcType=VARCHAR}, 
+      #{source,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{agentId,jdbcType=VARCHAR}, #{agentName,jdbcType=VARCHAR}, #{startTime,jdbcType=VARCHAR}, 
+      #{responseTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{startCause,jdbcType=INTEGER}, #{endCause,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.vkefu.webim.web.beans.ChatSession">
+    insert into cs_chat_session
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sessionId != null">
+        session_id,
+      </if>
+      <if test="tenantId != null">
+        tenant_id,
+      </if>
+      <if test="agentuserId != null">
+        agentuser_id,
+      </if>
+      <if test="source != null">
+        source,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="agentId != null">
+        agent_id,
+      </if>
+      <if test="agentName != null">
+        agent_name,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="responseTime != null">
+        response_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="startCause != null">
+        start_cause,
+      </if>
+      <if test="endCause != null">
+        end_cause,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sessionId != null">
+        #{sessionId,jdbcType=VARCHAR},
+      </if>
+      <if test="tenantId != null">
+        #{tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="agentuserId != null">
+        #{agentuserId,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null">
+        #{agentId,jdbcType=VARCHAR},
+      </if>
+      <if test="agentName != null">
+        #{agentName,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="responseTime != null">
+        #{responseTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="startCause != null">
+        #{startCause,jdbcType=INTEGER},
+      </if>
+      <if test="endCause != null">
+        #{endCause,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vkefu.webim.web.beans.ChatSession">
+    update cs_chat_session
+    <set>
+      <if test="tenantId != null">
+        tenant_id = #{tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="agentuserId != null">
+        agentuser_id = #{agentuserId,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null">
+        agent_id = #{agentId,jdbcType=VARCHAR},
+      </if>
+      <if test="agentName != null">
+        agent_name = #{agentName,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="responseTime != null">
+        response_time = #{responseTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="startCause != null">
+        start_cause = #{startCause,jdbcType=INTEGER},
+      </if>
+      <if test="endCause != null">
+        end_cause = #{endCause,jdbcType=INTEGER},
+      </if>
+    </set>
+    where session_id = #{sessionId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vkefu.webim.web.beans.ChatSession">
+    update cs_chat_session
+    set tenant_id = #{tenantId,jdbcType=VARCHAR},
+      agentuser_id = #{agentuserId,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      agent_id = #{agentId,jdbcType=VARCHAR},
+      agent_name = #{agentName,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=VARCHAR},
+      response_time = #{responseTime,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      start_cause = #{startCause,jdbcType=INTEGER},
+      end_cause = #{endCause,jdbcType=INTEGER}
+    where session_id = #{sessionId,jdbcType=VARCHAR}
+  </update>
+</mapper>

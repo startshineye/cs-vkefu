@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vkefu.webim.web.dao.SessionconfigDAO">
+  <resultMap id="BaseResultMap" type="com.vkefu.webim.web.beans.Sessionconfig">
+    <id column="sessionconfig_id" jdbcType="VARCHAR" property="sessionconfigId" />
+    <result column="tenant_id" jdbcType="VARCHAR" property="tenantId" />
+    <result column="creater" jdbcType="VARCHAR" property="creater" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sessionmsg" jdbcType="VARCHAR" property="sessionmsg" />
+    <result column="distribution" jdbcType="VARCHAR" property="distribution" />
+    <result column="timeoutmsg" jdbcType="VARCHAR" property="timeoutmsg" />
+    <result column="retimeoutmsg" jdbcType="VARCHAR" property="retimeoutmsg" />
+    <result column="satisfaction" jdbcType="TINYINT" property="satisfaction" />
+    <result column="createtime" jdbcType="VARCHAR" property="createtime" />
+    <result column="lastagent" jdbcType="TINYINT" property="lastagent" />
+    <result column="sessiontimeout" jdbcType="TINYINT" property="sessiontimeout" />
+    <result column="timeout" jdbcType="INTEGER" property="timeout" />
+    <result column="agenttimeoutmsg" jdbcType="INTEGER" property="agenttimeoutmsg" />
+    <result column="maxuser" jdbcType="INTEGER" property="maxuser" />
+    <result column="hourcheck" jdbcType="TINYINT" property="hourcheck" />
+    <result column="noagentmsg" jdbcType="VARCHAR" property="noagentmsg" />
+    <result column="agentbusymsg" jdbcType="VARCHAR" property="agentbusymsg" />
+    <result column="successmsg" jdbcType="VARCHAR" property="successmsg" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.vkefu.webim.web.beans.SessionconfigWithBLOBs">
+    <result column="workinghours" jdbcType="LONGVARCHAR" property="workinghours" />
+    <result column="notinwhmsg" jdbcType="LONGVARCHAR" property="notinwhmsg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sessionconfig_id, tenant_id, creater, user_name, name, sessionmsg, distribution, 
+    timeoutmsg, retimeoutmsg, satisfaction, createtime, lastagent, sessiontimeout, timeout, 
+    agenttimeoutmsg, maxuser, hourcheck, noagentmsg, agentbusymsg, successmsg
+  </sql>
+  <sql id="Blob_Column_List">
+    workinghours, notinwhmsg
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_sessionconfig
+    where sessionconfig_id = #{sessionconfigId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from cs_sessionconfig
+    where sessionconfig_id = #{sessionconfigId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.vkefu.webim.web.beans.SessionconfigWithBLOBs">
+    insert into cs_sessionconfig (sessionconfig_id, tenant_id, creater, 
+      user_name, name, sessionmsg, 
+      distribution, timeoutmsg, retimeoutmsg, 
+      satisfaction, createtime, lastagent, 
+      sessiontimeout, timeout, agenttimeoutmsg, 
+      maxuser, hourcheck, noagentmsg, 
+      agentbusymsg, successmsg, workinghours, 
+      notinwhmsg)
+    values (#{sessionconfigId,jdbcType=VARCHAR}, #{tenantId,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, 
+      #{userName,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sessionmsg,jdbcType=VARCHAR}, 
+      #{distribution,jdbcType=VARCHAR}, #{timeoutmsg,jdbcType=VARCHAR}, #{retimeoutmsg,jdbcType=VARCHAR}, 
+      #{satisfaction,jdbcType=TINYINT}, #{createtime,jdbcType=VARCHAR}, #{lastagent,jdbcType=TINYINT}, 
+      #{sessiontimeout,jdbcType=TINYINT}, #{timeout,jdbcType=INTEGER}, #{agenttimeoutmsg,jdbcType=INTEGER}, 
+      #{maxuser,jdbcType=INTEGER}, #{hourcheck,jdbcType=TINYINT}, #{noagentmsg,jdbcType=VARCHAR}, 
+      #{agentbusymsg,jdbcType=VARCHAR}, #{successmsg,jdbcType=VARCHAR}, #{workinghours,jdbcType=LONGVARCHAR}, 
+      #{notinwhmsg,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.vkefu.webim.web.beans.SessionconfigWithBLOBs">
+    insert into cs_sessionconfig
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sessionconfigId != null">
+        sessionconfig_id,
+      </if>
+      <if test="tenantId != null">
+        tenant_id,
+      </if>
+      <if test="creater != null">
+        creater,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="sessionmsg != null">
+        sessionmsg,
+      </if>
+      <if test="distribution != null">
+        distribution,
+      </if>
+      <if test="timeoutmsg != null">
+        timeoutmsg,
+      </if>
+      <if test="retimeoutmsg != null">
+        retimeoutmsg,
+      </if>
+      <if test="satisfaction != null">
+        satisfaction,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="lastagent != null">
+        lastagent,
+      </if>
+      <if test="sessiontimeout != null">
+        sessiontimeout,
+      </if>
+      <if test="timeout != null">
+        timeout,
+      </if>
+      <if test="agenttimeoutmsg != null">
+        agenttimeoutmsg,
+      </if>
+      <if test="maxuser != null">
+        maxuser,
+      </if>
+      <if test="hourcheck != null">
+        hourcheck,
+      </if>
+      <if test="noagentmsg != null">
+        noagentmsg,
+      </if>
+      <if test="agentbusymsg != null">
+        agentbusymsg,
+      </if>
+      <if test="successmsg != null">
+        successmsg,
+      </if>
+      <if test="workinghours != null">
+        workinghours,
+      </if>
+      <if test="notinwhmsg != null">
+        notinwhmsg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sessionconfigId != null">
+        #{sessionconfigId,jdbcType=VARCHAR},
+      </if>
+      <if test="tenantId != null">
+        #{tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionmsg != null">
+        #{sessionmsg,jdbcType=VARCHAR},
+      </if>
+      <if test="distribution != null">
+        #{distribution,jdbcType=VARCHAR},
+      </if>
+      <if test="timeoutmsg != null">
+        #{timeoutmsg,jdbcType=VARCHAR},
+      </if>
+      <if test="retimeoutmsg != null">
+        #{retimeoutmsg,jdbcType=VARCHAR},
+      </if>
+      <if test="satisfaction != null">
+        #{satisfaction,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="lastagent != null">
+        #{lastagent,jdbcType=TINYINT},
+      </if>
+      <if test="sessiontimeout != null">
+        #{sessiontimeout,jdbcType=TINYINT},
+      </if>
+      <if test="timeout != null">
+        #{timeout,jdbcType=INTEGER},
+      </if>
+      <if test="agenttimeoutmsg != null">
+        #{agenttimeoutmsg,jdbcType=INTEGER},
+      </if>
+      <if test="maxuser != null">
+        #{maxuser,jdbcType=INTEGER},
+      </if>
+      <if test="hourcheck != null">
+        #{hourcheck,jdbcType=TINYINT},
+      </if>
+      <if test="noagentmsg != null">
+        #{noagentmsg,jdbcType=VARCHAR},
+      </if>
+      <if test="agentbusymsg != null">
+        #{agentbusymsg,jdbcType=VARCHAR},
+      </if>
+      <if test="successmsg != null">
+        #{successmsg,jdbcType=VARCHAR},
+      </if>
+      <if test="workinghours != null">
+        #{workinghours,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="notinwhmsg != null">
+        #{notinwhmsg,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vkefu.webim.web.beans.SessionconfigWithBLOBs">
+    update cs_sessionconfig
+    <set>
+      <if test="tenantId != null">
+        tenant_id = #{tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null">
+        creater = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionmsg != null">
+        sessionmsg = #{sessionmsg,jdbcType=VARCHAR},
+      </if>
+      <if test="distribution != null">
+        distribution = #{distribution,jdbcType=VARCHAR},
+      </if>
+      <if test="timeoutmsg != null">
+        timeoutmsg = #{timeoutmsg,jdbcType=VARCHAR},
+      </if>
+      <if test="retimeoutmsg != null">
+        retimeoutmsg = #{retimeoutmsg,jdbcType=VARCHAR},
+      </if>
+      <if test="satisfaction != null">
+        satisfaction = #{satisfaction,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="lastagent != null">
+        lastagent = #{lastagent,jdbcType=TINYINT},
+      </if>
+      <if test="sessiontimeout != null">
+        sessiontimeout = #{sessiontimeout,jdbcType=TINYINT},
+      </if>
+      <if test="timeout != null">
+        timeout = #{timeout,jdbcType=INTEGER},
+      </if>
+      <if test="agenttimeoutmsg != null">
+        agenttimeoutmsg = #{agenttimeoutmsg,jdbcType=INTEGER},
+      </if>
+      <if test="maxuser != null">
+        maxuser = #{maxuser,jdbcType=INTEGER},
+      </if>
+      <if test="hourcheck != null">
+        hourcheck = #{hourcheck,jdbcType=TINYINT},
+      </if>
+      <if test="noagentmsg != null">
+        noagentmsg = #{noagentmsg,jdbcType=VARCHAR},
+      </if>
+      <if test="agentbusymsg != null">
+        agentbusymsg = #{agentbusymsg,jdbcType=VARCHAR},
+      </if>
+      <if test="successmsg != null">
+        successmsg = #{successmsg,jdbcType=VARCHAR},
+      </if>
+      <if test="workinghours != null">
+        workinghours = #{workinghours,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="notinwhmsg != null">
+        notinwhmsg = #{notinwhmsg,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where sessionconfig_id = #{sessionconfigId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.vkefu.webim.web.beans.SessionconfigWithBLOBs">
+    update cs_sessionconfig
+    set tenant_id = #{tenantId,jdbcType=VARCHAR},
+      creater = #{creater,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      sessionmsg = #{sessionmsg,jdbcType=VARCHAR},
+      distribution = #{distribution,jdbcType=VARCHAR},
+      timeoutmsg = #{timeoutmsg,jdbcType=VARCHAR},
+      retimeoutmsg = #{retimeoutmsg,jdbcType=VARCHAR},
+      satisfaction = #{satisfaction,jdbcType=TINYINT},
+      createtime = #{createtime,jdbcType=VARCHAR},
+      lastagent = #{lastagent,jdbcType=TINYINT},
+      sessiontimeout = #{sessiontimeout,jdbcType=TINYINT},
+      timeout = #{timeout,jdbcType=INTEGER},
+      agenttimeoutmsg = #{agenttimeoutmsg,jdbcType=INTEGER},
+      maxuser = #{maxuser,jdbcType=INTEGER},
+      hourcheck = #{hourcheck,jdbcType=TINYINT},
+      noagentmsg = #{noagentmsg,jdbcType=VARCHAR},
+      agentbusymsg = #{agentbusymsg,jdbcType=VARCHAR},
+      successmsg = #{successmsg,jdbcType=VARCHAR},
+      workinghours = #{workinghours,jdbcType=LONGVARCHAR},
+      notinwhmsg = #{notinwhmsg,jdbcType=LONGVARCHAR}
+    where sessionconfig_id = #{sessionconfigId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vkefu.webim.web.beans.Sessionconfig">
+    update cs_sessionconfig
+    set tenant_id = #{tenantId,jdbcType=VARCHAR},
+      creater = #{creater,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      sessionmsg = #{sessionmsg,jdbcType=VARCHAR},
+      distribution = #{distribution,jdbcType=VARCHAR},
+      timeoutmsg = #{timeoutmsg,jdbcType=VARCHAR},
+      retimeoutmsg = #{retimeoutmsg,jdbcType=VARCHAR},
+      satisfaction = #{satisfaction,jdbcType=TINYINT},
+      createtime = #{createtime,jdbcType=VARCHAR},
+      lastagent = #{lastagent,jdbcType=TINYINT},
+      sessiontimeout = #{sessiontimeout,jdbcType=TINYINT},
+      timeout = #{timeout,jdbcType=INTEGER},
+      agenttimeoutmsg = #{agenttimeoutmsg,jdbcType=INTEGER},
+      maxuser = #{maxuser,jdbcType=INTEGER},
+      hourcheck = #{hourcheck,jdbcType=TINYINT},
+      noagentmsg = #{noagentmsg,jdbcType=VARCHAR},
+      agentbusymsg = #{agentbusymsg,jdbcType=VARCHAR},
+      successmsg = #{successmsg,jdbcType=VARCHAR}
+    where sessionconfig_id = #{sessionconfigId,jdbcType=VARCHAR}
+  </update>
+</mapper>
