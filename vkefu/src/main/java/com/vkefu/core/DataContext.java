@@ -82,6 +82,27 @@ public class DataContext{
 			return super.toString().toLowerCase();
 		}
 	}
+
+	public enum NameSpaceEnum{
+		IM("/im/user") ,
+		AGENT("/im/agent"),
+		ENTIM("/im/ent") ,
+		AIIM("/im/ai") ,
+		CALLCENTER("/callcenter/event");
+		private String namespace ;
+		public String getNamespace() {
+			return namespace;
+		}
+		public void setNamespace(String namespace) {
+			this.namespace = namespace;
+		}
+		NameSpaceEnum(String namespace){
+			this.namespace = namespace ;
+		}
+		public String toString(){
+			return super.toString().toLowerCase() ;
+		}
+	}
 	/* public static void main(String[] args) {
 		String string = SourceTypeEnum.VIDEO.toString();
 		System.out.println(" string"+string);
