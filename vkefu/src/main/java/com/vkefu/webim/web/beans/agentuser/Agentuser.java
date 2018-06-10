@@ -1,4 +1,4 @@
-package com.vkefu.webim.web.beans;
+package com.vkefu.webim.web.beans.agentuser;
 
 public class Agentuser {
     private String agentuserId;

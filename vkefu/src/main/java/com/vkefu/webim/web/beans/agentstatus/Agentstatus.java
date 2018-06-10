@@ -1,6 +1,6 @@
-package com.vkefu.webim.web.beans;
+package com.vkefu.webim.web.beans.agentstatus;
 
-public class ChatOfflineMessage {
+public class Agentstatus {
     private Long messageId;
 
     private String tenantId;

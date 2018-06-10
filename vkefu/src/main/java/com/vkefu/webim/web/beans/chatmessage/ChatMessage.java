@@ -1,4 +1,4 @@
-package com.vkefu.webim.web.beans;
+package com.vkefu.webim.web.beans.chatmessage;
 
 public class ChatMessage {
     private Long messageId;

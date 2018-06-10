@@ -1,6 +1,6 @@
-package com.vkefu.webim.web.dao;
+package com.vkefu.webim.web.dao.chatsession;
 
-import com.vkefu.webim.web.beans.ChatSession;
+import com.vkefu.webim.web.beans.chatsession.ChatSession;
 
 public interface ChatSessionDAO {
     int deleteByPrimaryKey(String sessionId);

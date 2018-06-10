@@ -1,6 +1,6 @@
-package com.vkefu.webim.web.dao;
+package com.vkefu.webim.web.dao.chatmessage;
 
-import com.vkefu.webim.web.beans.ChatMessage;
+import com.vkefu.webim.web.beans.chatmessage.ChatMessage;
 
 public interface ChatMessageDAO {
     int deleteByPrimaryKey(Long messageId);

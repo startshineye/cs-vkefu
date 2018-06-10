@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.vkefu.webim.web.dao.AgentstatusDAO">
-  <resultMap id="BaseResultMap" type="com.vkefu.webim.web.beans.Agentstatus">
+<mapper namespace="com.vkefu.webim.web.dao.agentstatus.AgentstatusDAO">
+  <resultMap id="BaseResultMap" type="com.vkefu.webim.web.beans.agentstatus.Agentstatus">
     <id column="message_id" jdbcType="BIGINT" property="messageId" />
     <result column="tenant_id" jdbcType="VARCHAR" property="tenantId" />
     <result column="session_id" jdbcType="VARCHAR" property="sessionId" />
@@ -27,7 +27,7 @@
     delete from cs_chat_message
     where message_id = #{messageId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.vkefu.webim.web.beans.Agentstatus">
+  <insert id="insert" parameterType="com.vkefu.webim.web.beans.agentstatus.Agentstatus">
     insert into cs_chat_message (message_id, tenant_id, session_id, 
       source, from_id, from_name, 
       message_from, message_type, message_time, 
@@ -37,7 +37,7 @@
       #{messageFrom,jdbcType=INTEGER}, #{messageType,jdbcType=VARCHAR}, #{messageTime,jdbcType=VARCHAR}, 
       #{message,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.vkefu.webim.web.beans.Agentstatus">
+  <insert id="insertSelective" parameterType="com.vkefu.webim.web.beans.agentstatus.Agentstatus">
     insert into cs_chat_message
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="messageId != null">
@@ -104,7 +104,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.vkefu.webim.web.beans.Agentstatus">
+  <update id="updateByPrimaryKeySelective" parameterType="com.vkefu.webim.web.beans.agentstatus.Agentstatus">
     update cs_chat_message
     <set>
       <if test="tenantId != null">
@@ -137,7 +137,7 @@
     </set>
     where message_id = #{messageId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.vkefu.webim.web.beans.Agentstatus">
+  <update id="updateByPrimaryKey" parameterType="com.vkefu.webim.web.beans.agentstatus.Agentstatus">
     update cs_chat_message
     set tenant_id = #{tenantId,jdbcType=VARCHAR},
       session_id = #{sessionId,jdbcType=VARCHAR},
@@ -150,7 +150,7 @@
       message = #{message,jdbcType=VARCHAR}
     where message_id = #{messageId,jdbcType=BIGINT}
   </update>
-  <resultMap id="BaseResultMap" type="com.vkefu.webim.web.beans.Agentstatus">
+  <resultMap id="BaseResultMap" type="com.vkefu.webim.web.beans.agentstatus.Agentstatus">
     <id column="agentstatus_id" jdbcType="VARCHAR" property="agentstatusId" />
     <result column="tenant_id" jdbcType="VARCHAR" property="tenantId" />
     <result column="agent_id" jdbcType="VARCHAR" property="agentId" />
@@ -178,7 +178,7 @@
     delete from cs_agentstatus
     where agentstatus_id = #{agentstatusId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.vkefu.webim.web.beans.Agentstatus">
+  <insert id="insert" parameterType="com.vkefu.webim.web.beans.agentstatus.Agentstatus">
     insert into cs_agentstatus (agentstatus_id, tenant_id, agent_id, 
       agent_name, login_time, status, 
       agentuser_id, serusernum, skill, 
@@ -190,7 +190,7 @@
       #{skillName,jdbcType=VARCHAR}, #{users,jdbcType=INTEGER}, #{maxusers,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.vkefu.webim.web.beans.Agentstatus">
+  <insert id="insertSelective" parameterType="com.vkefu.webim.web.beans.agentstatus.Agentstatus">
     insert into cs_agentstatus
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="agentstatusId != null">
@@ -269,7 +269,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.vkefu.webim.web.beans.Agentstatus">
+  <update id="updateByPrimaryKeySelective" parameterType="com.vkefu.webim.web.beans.agentstatus.Agentstatus">
     update cs_agentstatus
     <set>
       <if test="tenantId != null">
@@ -308,7 +308,7 @@
     </set>
     where agentstatus_id = #{agentstatusId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.vkefu.webim.web.beans.Agentstatus">
+  <update id="updateByPrimaryKey" parameterType="com.vkefu.webim.web.beans.agentstatus.Agentstatus">
     update cs_agentstatus
     set tenant_id = #{tenantId,jdbcType=VARCHAR},
       agent_id = #{agentId,jdbcType=VARCHAR},

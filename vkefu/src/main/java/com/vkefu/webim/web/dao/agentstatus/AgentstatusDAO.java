@@ -1,6 +1,6 @@
-package com.vkefu.webim.web.dao;
+package com.vkefu.webim.web.dao.agentstatus;
 
-import com.vkefu.webim.web.beans.Agentstatus;
+import com.vkefu.webim.web.beans.agentstatus.Agentstatus;
 
 public interface AgentstatusDAO {
     int deleteByPrimaryKey(Long messageId);

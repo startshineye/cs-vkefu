@@ -1,6 +1,6 @@
-package com.vkefu.webim.web.dao;
+package com.vkefu.webim.web.dao.agentuser;
 
-import com.vkefu.webim.web.beans.Agentuser;
+import com.vkefu.webim.web.beans.agentuser.Agentuser;
 
 public interface AgentuserDAO {
     int deleteByPrimaryKey(String agentuserId);

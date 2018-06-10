@@ -1,6 +1,6 @@
-package com.vkefu.webim.web.dao;
+package com.vkefu.webim.web.dao.chatofflinemessage;
 
-import com.vkefu.webim.web.beans.ChatOfflineMessage;
+import com.vkefu.webim.web.beans.chatofflinemessage.ChatOfflineMessage;
 
 public interface ChatOfflineMessageDAO {
     int deleteByPrimaryKey(Long messageId);

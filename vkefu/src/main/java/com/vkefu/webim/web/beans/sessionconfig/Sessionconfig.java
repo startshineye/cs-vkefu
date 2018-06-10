@@ -1,4 +1,4 @@
-package com.vkefu.webim.web.beans;
+package com.vkefu.webim.web.beans.sessionconfig;
 
 public class Sessionconfig {
     private String sessionconfigId;

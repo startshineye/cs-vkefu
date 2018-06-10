@@ -1,4 +1,4 @@
-package com.vkefu.webim.web.beans;
+package com.vkefu.webim.web.beans.chatsession;
 
 public class ChatSession {
     private String sessionId;

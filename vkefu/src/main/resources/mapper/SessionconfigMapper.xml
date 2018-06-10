@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.vkefu.webim.web.dao.SessionconfigDAO">
-  <resultMap id="BaseResultMap" type="com.vkefu.webim.web.beans.Sessionconfig">
+<mapper namespace="com.vkefu.webim.web.dao.sessionconfig.SessionconfigDAO">
+  <resultMap id="BaseResultMap" type="com.vkefu.webim.web.beans.sessionconfig.Sessionconfig">
     <id column="sessionconfig_id" jdbcType="VARCHAR" property="sessionconfigId" />
     <result column="tenant_id" jdbcType="VARCHAR" property="tenantId" />
     <result column="creater" jdbcType="VARCHAR" property="creater" />
@@ -298,7 +298,7 @@
       notinwhmsg = #{notinwhmsg,jdbcType=LONGVARCHAR}
     where sessionconfig_id = #{sessionconfigId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.vkefu.webim.web.beans.Sessionconfig">
+  <update id="updateByPrimaryKey" parameterType="com.vkefu.webim.web.beans.sessionconfig.Sessionconfig">
     update cs_sessionconfig
     set tenant_id = #{tenantId,jdbcType=VARCHAR},
       creater = #{creater,jdbcType=VARCHAR},

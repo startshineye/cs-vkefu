@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.vkefu.webim.web.dao.AgentuserDAO">
-  <resultMap id="BaseResultMap" type="com.vkefu.webim.web.beans.Agentuser">
+<mapper namespace="com.vkefu.webim.web.dao.agentuser.AgentuserDAO">
+  <resultMap id="BaseResultMap" type="com.vkefu.webim.web.beans.agentuser.Agentuser">
     <id column="agentuser_id" jdbcType="VARCHAR" property="agentuserId" />
     <result column="tenant_id" jdbcType="VARCHAR" property="tenantId" />
     <result column="source" jdbcType="VARCHAR" property="source" />
@@ -26,7 +26,7 @@
     delete from cs_agentuser
     where agentuser_id = #{agentuserId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.vkefu.webim.web.beans.Agentuser">
+  <insert id="insert" parameterType="com.vkefu.webim.web.beans.agentuser.Agentuser">
     insert into cs_agentuser (agentuser_id, tenant_id, source, 
       user_id, user_name, agent_id, 
       agent_name, status, session_id
@@ -36,7 +36,7 @@
       #{agentName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{sessionId,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.vkefu.webim.web.beans.Agentuser">
+  <insert id="insertSelective" parameterType="com.vkefu.webim.web.beans.agentuser.Agentuser">
     insert into cs_agentuser
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="agentuserId != null">
@@ -97,7 +97,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.vkefu.webim.web.beans.Agentuser">
+  <update id="updateByPrimaryKeySelective" parameterType="com.vkefu.webim.web.beans.agentuser.Agentuser">
     update cs_agentuser
     <set>
       <if test="tenantId != null">
@@ -127,7 +127,7 @@
     </set>
     where agentuser_id = #{agentuserId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.vkefu.webim.web.beans.Agentuser">
+  <update id="updateByPrimaryKey" parameterType="com.vkefu.webim.web.beans.agentuser.Agentuser">
     update cs_agentuser
     set tenant_id = #{tenantId,jdbcType=VARCHAR},
       source = #{source,jdbcType=VARCHAR},
