@@ -3,14 +3,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <head>
     <title>devsq聊天室</title>
-    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/v6/main.css" rel="stylesheet">
-    <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="../js/socket.io.js"></script>
     <script src="/v6/webIM.js"></script>
 </head>
 <body>
-
 <div id="main-content" class="container">
     <div class="row">
         <div class="col-md-6">
@@ -26,9 +23,9 @@
         <div class="col-md-6">
             <form class="form-inline">
                 <div class="form-group">
-                    <input type="text" id="content" class="form-control" placeholder="请输入...">
+                    <input type="text" id="message" class="form-control" placeholder="请输入...">
                 </div>
-                <button id="send" class="btn btn-default" type="submit">发送</button>
+                <button id="send" class="btn btn-default" type="submit" onclick="sendMessage()">发送</button>
             </form>
         </div>
     </div>
@@ -52,7 +49,7 @@
                     <th>聊天记录</th>
                 </tr>
                 </thead>
-                <tbody id='record'>
+                <tbody id='connect-message'>
                 </tbody>
             </table>
         </div>

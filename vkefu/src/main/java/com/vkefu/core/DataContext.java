@@ -103,10 +103,19 @@ public class DataContext{
 			return super.toString().toLowerCase() ;
 		}
 	}
-	/* public static void main(String[] args) {
-		String string = SourceTypeEnum.VIDEO.toString();
-		System.out.println(" string"+string);
-	}*/
+
+	/**
+	 * 消息类型
+	 */
+	public enum MessageTypeEnum{
+		NEW,
+		MESSAGE,
+		END,
+		TRANS, STATUS , AGENTSTATUS , SERVICE, WRITING;
+		public String toString(){
+			return super.toString().toLowerCase() ;
+		}
+	}
 	
 }
 
