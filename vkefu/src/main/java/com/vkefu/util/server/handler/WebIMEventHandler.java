@@ -2,6 +2,7 @@ package com.vkefu.util.server.handler;
 
 import com.corundumstudio.socketio.AckRequest;
 import com.corundumstudio.socketio.SocketIOClient;
+import com.corundumstudio.socketio.SocketIONamespace;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.annotation.OnConnect;
 import com.corundumstudio.socketio.annotation.OnDisconnect;
@@ -26,13 +27,15 @@ public class WebIMEventHandler {
     @OnConnect
     public void onConnect(SocketIOClient client){
         //获取参数
-
+        SocketIONamespace namespace = client.getNamespace();
+        String userId = client.getHandshakeData().getSingleUrlParam("userId");
+        String userName = client.getHandshakeData().getSingleUrlParam("userName");
+        String sessionId  = client.getHandshakeData().getSingleUrlParam("sessionId");
     }
     //消息入口
     @OnEvent(value = "message")
     public void onEvent(SocketIOClient client, AckRequest request, ChatMessage message){
         System.out.println(" 发送消息 ["+message+"]");
-
     }
     //断开连接
     @OnDisconnect

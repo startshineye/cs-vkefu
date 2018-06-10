@@ -102,10 +102,10 @@
 		</dependency>
 
 		<!--spring security依赖-->
-		<dependency>
+		<!--<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
+		</dependency>-->
 
 		<!--以thymeleaf渲染页面-->
 		<dependency>
