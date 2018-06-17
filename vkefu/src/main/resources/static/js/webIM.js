@@ -5,7 +5,6 @@ var sessionId = "121212121212";
 var socket = io.connect('http://localhost:8078/im/user?userId='+userId+'&userName='+userName+'&sessionId='+sessionId+'');
 socket.on('connect',function(){
     console.info("connect",new Date());
-    document.getElementById('socket_info').innerHTML="--connect--"+new Date();
    /* output('<span id="connect-message">'+ new Date().format("yyyy-MM-dd hh:mm:ss") + ' 开始沟通' +'</span>' , 'message connect-message');*/
 })
 socket.on("agentstatus",function(data){
@@ -19,19 +18,13 @@ socket.on("status",function(data){
         editor.readonly();
     }
 })
+
+/**
+ * 接收消息
+ */
 socket.on('message', function(data) {
-    //var chat=document.getElementsByClassName('chatting-left').innerText;
     console.info("message",data.message);
-    document.getElementById("socket_info").innerHTML = "--message--"+data.message;
-   // chat = data.message;
-   /* if(data.messageType == "image"){
-        chat = "<a href='"+data.message+"_original' target='_blank'><img src='"+data.message+"' class='ukefu-media-image'/></a>" ;
-    }
-    if(data.calltype == "in"){
-        output('<div class="chat-right"> <img class="user-img" src="/im/img/user.png" alt=""><div class="chat-message"><label class="time">'+data.createtime+'</label><label  class="user">'+data.nickName+'</label> </div><div class="chatting-right"><i class="arrow arrow"></i><div class="chat-content theme">'+chat+'</div></div>' , "chat-block");
-    }else if(data.calltype == "out"){
-        output('<div class="chat-left"> <img class="user-img" src="" alt=""><div class="chat-message"><label  class="user">'+data.nickName+'</label><label class="time">'+data.createtime+'</label> </div><div class="chatting-left"><i class="arrow"></i><div class="chat-content">'+chat+'</div></div>' , "chat-block");
-    }*/
+    $("#record").append("<tr><td>" + data.message + "</td> <td>"+new Date().toLocaleTimeString()+"</td></tr>");
 });
 socket.on('disconnect',function() {
     console.info("disconnect","连接坐席失败，在线咨询服务不可用");
@@ -43,7 +36,7 @@ function sendDisconnect(){
 }
 function sendMessage() {
         var agentId = "agent1101";
-        var message = document.getElementById('message').value;
+        var message = document.getElementById('content').value;
         if(message!= ""){
             socket.emit('message', {
                 agentid:agentId,
@@ -53,6 +46,7 @@ function sendMessage() {
                 message : message
             });
         }
+    document.getElementById('content').value="";
 }
 function output(message , clazz) {
    /* if(clazz == "message connect-message"){
@@ -97,3 +91,13 @@ window.onresize = function(){
 function outputSocketInfo(){
 
 }
+$(function () {
+    $("form").on('submit', function (e) {
+        e.preventDefault();
+    });
+
+    $( "#disconnect" ).click(function() { disconnect(); });
+    $( "#send" ).click(function() {
+        sendMessage();
+    });
+});

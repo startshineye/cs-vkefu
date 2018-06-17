@@ -32,9 +32,10 @@ public class UserLoginController {
     public String login(@RequestParam(value = "username",required = true) String name, @RequestParam(value = "pwd",required = true) String pwd, HttpServletRequest request){
         String passworrd = userMap.get(name);
         if(pwd.equals(passworrd)){
+            //return "redirect:/error.html";
             return "redirect:/chat.html";
         }
-        return "redirect:/index.html";
+        return "redirect:/reindex.html";
     }
 
 }
