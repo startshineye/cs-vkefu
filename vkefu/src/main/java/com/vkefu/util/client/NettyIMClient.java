@@ -2,11 +2,18 @@ package com.vkefu.util.client;
 
 import com.corundumstudio.socketio.SocketIOClient;
 import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multiset;
 
 import java.util.List;
+import java.util.Set;
 
 public class NettyIMClient implements NettyClient {
     private ArrayListMultimap<String, SocketIOClient> imClientsMap = ArrayListMultimap.create();
+
+    public Set<String> getAllImClients(){
+        Set<String> keys = imClientsMap.keySet();
+        return keys;
+    }
 
     @Override
     public List<SocketIOClient> getClients(String key) {

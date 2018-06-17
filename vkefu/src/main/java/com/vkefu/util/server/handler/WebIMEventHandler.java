@@ -11,6 +11,8 @@ import com.vkefu.util.client.NettyClients;
 import com.vkefu.webim.web.beans.chatmessage.ChatMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Set;
+
 /**
  * webIM事件处理
  * created by yxm 20180610 17:32:12
@@ -51,5 +53,17 @@ public class WebIMEventHandler {
         String userId = client.getHandshakeData().getSingleUrlParam("userId") ;
         String orgi = client.getHandshakeData().getSingleUrlParam("orgi") ;
         NettyClients.getInstance().removeIMEventClient(userId,client.getSessionId().toString());
+    }
+
+    //消息接收入口，坐席状态更新
+    @OnEvent(value = "onlineuser")
+    public void onEvent(SocketIOClient client,ChatMessage message)
+    {
+        String fromId = message.getFromId();
+        Set<String> imEventOnlineUser = NettyClients.getInstance().getIMEventOnlineUser();
+        message.setMessage(imEventOnlineUser.toString());
+        NettyClients.getInstance().sendIMEventMessage(fromId,DataContext.MessageTypeEnum.ONLINEUSER.toString(),message);
+        System.out.println("online user");
+
     }
 }

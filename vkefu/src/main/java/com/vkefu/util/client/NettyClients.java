@@ -1,8 +1,10 @@
 package com.vkefu.util.client;
 
 import com.corundumstudio.socketio.SocketIOClient;
+import com.google.common.collect.Multiset;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * created by yxm 20180610 20:37:21
@@ -28,6 +30,11 @@ public class NettyClients {
         for(SocketIOClient userClient : userClients){
             userClient.sendEvent(event, data);
         }
+    }
+
+    public  Set<String> getIMEventOnlineUser(){
+        Set<String> allImClients1 = imClients.getAllImClients();
+        return allImClients1;
     }
 
     public void putAgentEventClient(String id , SocketIOClient agentClient){

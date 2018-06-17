@@ -15,7 +15,7 @@ import java.util.Collection;
  * Spring Boot 启动加载数据 CommandLineRunner
  * created by yxm 20180610 14:01:21
  */
-@Component
+/*@Component
 public class ServerRunner implements CommandLineRunner{
     private final SocketIOServer server;
 
@@ -36,4 +36,4 @@ public class ServerRunner implements CommandLineRunner{
         server.start();
         System.out.println("项目初始化!");
     }
-}
+}*/

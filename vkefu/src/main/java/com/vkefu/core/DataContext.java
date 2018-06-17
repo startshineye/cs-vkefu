@@ -109,6 +109,7 @@ public class DataContext{
 	 */
 	public enum MessageTypeEnum{
 		NEW,
+		ONLINEUSER,
 		MESSAGE,
 		END,
 		TRANS, STATUS , AGENTSTATUS , SERVICE, WRITING;

@@ -31,6 +31,13 @@ socket.on('disconnect',function() {
     /*output('<span id="connect-message">连接坐席失败，在线咨询服务不可用</span>' , 'message connect-message');*/
     document.getElementById("socket_info").innerHTML="连接坐席失败，在线咨询服务不可用";
 });
+/**
+ * 用户状态
+ */
+socket.on('onlineuser', function(data) {
+    console.info("onlineuser",data);
+    $("#online").html("<tr><td>" + data.message + "</td> <td>"+new Date().toLocaleTimeString()+"</td></tr>");
+});
 function sendDisconnect(){
     socket.disconnect();
 }
@@ -48,6 +55,7 @@ function sendMessage() {
         }
     document.getElementById('content').value="";
 }
+
 function output(message , clazz) {
    /* if(clazz == "message connect-message"){
         var messages = document.getElementsByClassName("connect-message") ;
@@ -91,13 +99,29 @@ window.onresize = function(){
 function outputSocketInfo(){
 
 }
+function onlineUser() {
+    console.info("--onlineUser--",userId);
+    socket.emit('onlineuser', {
+        agentid:"",
+        messageType:"" ,
+        sessionid:"",
+        fromId:userId,
+        message : ""
+    });
+}
 $(function () {
     $("form").on('submit', function (e) {
         e.preventDefault();
     });
 
-    $( "#disconnect" ).click(function() { disconnect(); });
-    $( "#send" ).click(function() {
+    $("#disconnect").click(function () {
+        disconnect();
+    });
+    $("#send").click(function () {
         sendMessage();
     });
-});
+
+    //定时监测
+    setInterval("onlineUser()",3000);
+
+})
