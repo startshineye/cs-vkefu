@@ -5,6 +5,7 @@ var sessionId = "121212121212";
 var socket = io.connect('http://localhost:8078/im/user?userId='+userId+'&userName='+userName+'&sessionId='+sessionId+'');
 socket.on('connect',function(){
     console.info("connect",new Date());
+    document.getElementById('socket_info').innerHTML="--connect--"+new Date();
    /* output('<span id="connect-message">'+ new Date().format("yyyy-MM-dd hh:mm:ss") + ' 开始沟通' +'</span>' , 'message connect-message');*/
 })
 socket.on("agentstatus",function(data){
@@ -21,7 +22,7 @@ socket.on("status",function(data){
 socket.on('message', function(data) {
     //var chat=document.getElementsByClassName('chatting-left').innerText;
     console.info("message",data.message);
-    document.getElementById("connect-message").innerHTML = data.message;
+    document.getElementById("socket_info").innerHTML = "--message--"+data.message;
    // chat = data.message;
    /* if(data.messageType == "image"){
         chat = "<a href='"+data.message+"_original' target='_blank'><img src='"+data.message+"' class='ukefu-media-image'/></a>" ;
@@ -35,6 +36,7 @@ socket.on('message', function(data) {
 socket.on('disconnect',function() {
     console.info("disconnect","连接坐席失败，在线咨询服务不可用");
     /*output('<span id="connect-message">连接坐席失败，在线咨询服务不可用</span>' , 'message connect-message');*/
+    document.getElementById("socket_info").innerHTML="连接坐席失败，在线咨询服务不可用";
 });
 function sendDisconnect(){
     socket.disconnect();
@@ -42,14 +44,6 @@ function sendDisconnect(){
 function sendMessage() {
         var agentId = "agent1101";
         var message = document.getElementById('message').value;
-   var json = {
-        agentid:agentId,
-            messageType:"text" ,
-        sessionid:sessionId,
-        fromId:userId,
-        message : message
-    };
-   console.info("message",JSON.stringify(json));
         if(message!= ""){
             socket.emit('message', {
                 agentid:agentId,
@@ -59,7 +53,6 @@ function sendMessage() {
                 message : message
             });
         }
-
 }
 function output(message , clazz) {
    /* if(clazz == "message connect-message"){
@@ -101,3 +94,6 @@ document.onkeyup=function(e){
 window.onresize = function(){
   /*  R3Helper.resize();*/
 };
+function outputSocketInfo(){
+
+}
