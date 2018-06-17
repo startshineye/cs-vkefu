@@ -5,8 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,13 +31,19 @@ public class UserLoginController {
     }
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public String login(@RequestParam(value = "username",required = true) String name, @RequestParam(value = "pwd",required = true) String pwd, HttpServletRequest request){
+    public ModelAndView login(@RequestParam(value = "username",required = true) String name,
+                              @RequestParam(value = "pwd",required = true) String pwd,ModelAndView modelAndView,
+                              HttpServletRequest request){
         String passworrd = userMap.get(name);
+        String sessionid = request.getSession().getId() ;
         if(pwd.equals(passworrd)){
-            //return "redirect:/error.html";
-            return "redirect:/chat.html";
+            modelAndView.setViewName("apps/im/chat");
+            modelAndView.addObject("userId",name);
+            modelAndView.addObject("pwd",pwd);
+            modelAndView.addObject("sessionid",sessionid);
+            return modelAndView;
         }
-        return "redirect:/reindex.html";
+        return null;
     }
 
 }

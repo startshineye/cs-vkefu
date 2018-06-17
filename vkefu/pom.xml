@@ -163,6 +163,12 @@
 			<version>3.1.0</version>
 		</dependency>
 
+		<!-- freemarker 依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-freemarker</artifactId>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>

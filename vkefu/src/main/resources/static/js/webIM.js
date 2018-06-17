@@ -1,7 +1,7 @@
 
-var userId = "zs1000";
-var userName = "张三";
-var sessionId = "121212121212";
+var userId = document.getElementById("userId").value;
+var userName ="";
+var sessionId = document.getElementById("sessionid").value;
 var socket = io.connect('http://localhost:8078/im/user?userId='+userId+'&userName='+userName+'&sessionId='+sessionId+'');
 socket.on('connect',function(){
     console.info("connect",new Date());
