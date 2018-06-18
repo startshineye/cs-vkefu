@@ -1,4 +1,4 @@
-package com.vkefu.webim.config;
+package com.vkefu.config;
 
 import com.corundumstudio.socketio.AuthorizationListener;
 import com.corundumstudio.socketio.Configuration;
@@ -44,6 +44,7 @@ public class NettyServerConfig {
         System.out.println("namespace"+DataContext.NameSpaceEnum.IM.toString());
         socketIOServer.addNamespace(DataContext.NameSpaceEnum.IM.getNamespace());//绑定namespace
         socketIOServer.addNamespace(DataContext.NameSpaceEnum.AGENT.getNamespace());
+        socketIOServer.addNamespace(DataContext.NameSpaceEnum.ENTIM.getNamespace());
         System.out.println("NettyServerConfig Configuration host"+host+" port"+port+" socketIOServer"+socketIOServer);
         return socketIOServer;
 

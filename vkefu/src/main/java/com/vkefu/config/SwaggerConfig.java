@@ -1,4 +1,4 @@
-package com.vkefu.webim.config;
+package com.vkefu.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

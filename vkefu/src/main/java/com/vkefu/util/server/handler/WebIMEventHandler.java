@@ -38,6 +38,9 @@ public class WebIMEventHandler {
 
         //放入缓存
         NettyClients.getInstance().putIMEventClient(userId,client);
+
+
+
     }
     //消息入口
     @OnEvent(value = "message")
