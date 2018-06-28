@@ -37,7 +37,7 @@ public class UserLoginController {
         String passworrd = userMap.get(name);
         String sessionid = request.getSession().getId() ;
         if(pwd.equals(passworrd)){
-            modelAndView.setViewName("apps/im/chat");
+            modelAndView.setViewName("apps/menu/menu");
             modelAndView.addObject("userId",name);
             modelAndView.addObject("pwd",pwd);
             modelAndView.addObject("sessionid",sessionid);

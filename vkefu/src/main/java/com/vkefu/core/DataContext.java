@@ -36,8 +36,7 @@ public class DataContext{
 		 AGENTSTATEHEART,//状态坐席心跳
 		 AGENTHEART,//坐席心态
 		 USERHEART,//用户心跳
-		 WEBCCSTART,//web用户发送信息
-		 WEBCHATCLIENTMSG,//客户发送web聊天信息(C-->A)
+ 		 WEBCHATCLIENTMSG,//客户发送web聊天信息(C-->A)
 		 WEBCHATCLIENTEND,//用户超时结束聊天
 		 WEBCHATAGENTMSG,//坐席发送web聊天信息(A-->C)
 		 AGENTSTATUS,//坐席报告状态
@@ -117,6 +116,5 @@ public class DataContext{
 			return super.toString().toLowerCase() ;
 		}
 	}
-	
 }
 

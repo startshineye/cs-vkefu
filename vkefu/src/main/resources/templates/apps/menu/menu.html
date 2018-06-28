@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>聊天菜单</title>
+<script src="/webjars/jquery/jquery.min.js"></script>
+</head>
+<script>
+        var userId = "${userId}";
+        var pwd = "${pwd}";
+</script>
+<body>
+    <input type="hidden" value="">
+    <input type="hidden">
+        <p><a  onclick="singleChat();">单聊</a></p>
+        <p><a  onclick="groupChat();">群聊</a></p>
+</body>
+<script>
+        function singleChat() {
+            url = "/vkefu/menu/single.do?userId="+userId+"&pwd="+pwd;
+            window.location.href=url;
+        }
+
+        function groupChat() {
+            url = "/vkefu/menu/group.do?userId="+userId+"&pwd="+pwd;
+            window.location.href=url;
+        }
+</script>
+</html>
