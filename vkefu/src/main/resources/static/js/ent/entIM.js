@@ -4,7 +4,7 @@ var userName ="";
 var sessionId = document.getElementById("sessionid").value;
 var socket = io.connect('http://localhost:8078/im/ent?userId='+userId+'&userName='+userName+'&sessionId='+sessionId+'');
 socket.on('connect',function(){
-    console.info("connect",new Date());
+    console.info("im/ent connect",new Date());
 })
 socket.on("agentstatus",function(data){
     document.getElementById('connect-message').innerHTML=data.message;
@@ -43,6 +43,7 @@ function sendDisconnect(){
 function sendMessage() {
         var agentId = "agent1101";
         var message = document.getElementById('content').value;
+        console.info("==sendMessage()==message:"+message)
         if(message!= ""){
             socket.emit('message', {
                 agentid:agentId,
@@ -119,7 +120,6 @@ $(function () {
     $("#send").click(function () {
         sendMessage();
     });
-
     //定时监测
     setInterval("onlineUser()",3000);
 

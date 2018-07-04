@@ -5,6 +5,8 @@ import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.annotation.OnConnect;
 import com.corundumstudio.socketio.annotation.OnDisconnect;
 import com.corundumstudio.socketio.annotation.OnEvent;
+import com.vkefu.core.DataContext;
+import com.vkefu.util.client.NettyClients;
 import com.vkefu.webim.web.beans.chatmessage.ChatMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 /**
@@ -24,17 +26,29 @@ public class EntIMEventHandler {
     @OnConnect
     public void onConnect(SocketIOClient client){
         //client.joinRoom();
+        String userId = client.getHandshakeData().getSingleUrlParam("userId");
+        String userName = client.getHandshakeData().getSingleUrlParam("userName");
+        String sessionId  = client.getHandshakeData().getSingleUrlParam("sessionId");
+
+        //放入缓存
+        NettyClients.getInstance().putEntIMEventClient(userId,client);
+        System.out.println("====EntIMEventHandler===="+userId);
 
     }
     //消息入口
     @OnEvent(value = "message")
     public void onEvent(SocketIOClient client, AckRequest request, ChatMessage message){
         System.out.println(" 发送消息 ["+message+"]");
+        String fromId = message.getFromId();
+        NettyClients.getInstance().sendEntIMEventMessage(fromId, DataContext.MessageTypeEnum.MESSAGE.toString(),message);
     }
     //断开连接
     @OnDisconnect
     public void onDisconnect(SocketIOClient client){
         System.out.println("断开连接 ["+client.getSessionId()+"]");
+        String userId = client.getHandshakeData().getSingleUrlParam("userId") ;
+        String orgi = client.getHandshakeData().getSingleUrlParam("orgi") ;
+        NettyClients.getInstance().removeEntIMEventClient(userId,client.getSessionId().toString());
     }
 
     //消息接收入口，坐席状态更新

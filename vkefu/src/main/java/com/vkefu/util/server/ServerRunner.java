@@ -4,6 +4,7 @@ import com.corundumstudio.socketio.SocketIONamespace;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.vkefu.core.DataContext;
 import com.vkefu.util.server.handler.AgentEventHandler;
+import com.vkefu.util.server.handler.EntIMEventHandler;
 import com.vkefu.util.server.handler.WebIMEventHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -29,11 +30,14 @@ public class ServerRunner implements CommandLineRunner{
         System.out.println("ServerRunner SocketIOServer"+server);
         server.getNamespace(DataContext.NameSpaceEnum.IM.getNamespace()).addListeners(new WebIMEventHandler(server));
         server.getNamespace(DataContext.NameSpaceEnum.AGENT.getNamespace()).addListeners(new AgentEventHandler(server));
+        server.getNamespace(DataContext.NameSpaceEnum.ENTIM.getNamespace()).addListeners(new EntIMEventHandler(server));
         Collection<SocketIONamespace> allNamespaces = server.getAllNamespaces();
         for (SocketIONamespace socketIONamespace : allNamespaces) {
             System.out.println(" socketIONamespace"+socketIONamespace.getName());
         }
         server.start();
+       //server.startAsync();
         System.out.println("项目初始化!");
+
     }
 }*/
