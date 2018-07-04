@@ -29,6 +29,10 @@ public class EntIMEventHandler {
         String userId = client.getHandshakeData().getSingleUrlParam("userId");
         String userName = client.getHandshakeData().getSingleUrlParam("userName");
         String sessionId  = client.getHandshakeData().getSingleUrlParam("sessionId");
+        String group = "entim";
+
+        //加入群聊
+        client.joinRoom(group);
 
         //放入缓存
         NettyClients.getInstance().putEntIMEventClient(userId,client);
@@ -40,15 +44,24 @@ public class EntIMEventHandler {
     public void onEvent(SocketIOClient client, AckRequest request, ChatMessage message){
         System.out.println(" 发送消息 ["+message+"]");
         String fromId = message.getFromId();
-        NettyClients.getInstance().sendEntIMEventMessage(fromId, DataContext.MessageTypeEnum.MESSAGE.toString(),message);
+        String group = "entim";
+
+        client.getNamespace().getRoomOperations(group).sendEvent(DataContext.MessageTypeEnum.MESSAGE.toString(), message);
+       // NettyClients.getInstance().sendEntIMEventMessage(fromId, DataContext.MessageTypeEnum.MESSAGE.toString(),message);
     }
+
     //断开连接
     @OnDisconnect
     public void onDisconnect(SocketIOClient client){
         System.out.println("断开连接 ["+client.getSessionId()+"]");
-        String userId = client.getHandshakeData().getSingleUrlParam("userId") ;
-        String orgi = client.getHandshakeData().getSingleUrlParam("orgi") ;
-        NettyClients.getInstance().removeEntIMEventClient(userId,client.getSessionId().toString());
+        String userId = client.getHandshakeData().getSingleUrlParam("userId");
+        String userName = client.getHandshakeData().getSingleUrlParam("userName");
+        String sessionId  = client.getHandshakeData().getSingleUrlParam("sessionId");
+        String group = "entim";
+
+        //加入群聊
+        client.leaveRoom(group);
+       // NettyClients.getInstance().removeEntIMEventClient(userId,client.getSessionId().toString());
     }
 
     //消息接收入口，坐席状态更新
